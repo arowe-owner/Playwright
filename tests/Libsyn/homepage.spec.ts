@@ -12,6 +12,8 @@ const support = 'a:visible >> text = support >> nth = 0';
 
 test.beforeEach(async ({ page }) => {
     await page.goto('https://libsyn.com/');
+    //This is here to click the Accpet in the Privacy Policy
+    await page.locator('a:visible >> text = accept').click()
   });
 
 test.describe('HomePage Header Buttons', () => {
@@ -41,15 +43,22 @@ test.describe('HomePage Header Buttons', () => {
         expect(page.url()).toContain('libsyn-podcast-hosting-features');
     })
     //Monetization
-    test('Should click "Monetization"', async ({page}) => {
-        await expect(page.locator(monetization)).toBeVisible();
-        await page.locator(monetization).click();
-        expect(page.url()).toContain('podcast-monetization');
+    test.describe('Monitization Buttons', () => {
+        test('Should click "Monetization Button"', async ({page}) => {
+            await expect(page.locator(monetization)).toBeVisible();
+            await page.locator(monetization).dblclick();
+            expect(page.url()).toContain('podcast-monetization');
+        })
+        test('Should click "Monetization Dropdown 1"', async ({page}) => {
+            await expect(page.locator(monetization)).toBeVisible();
+            await page.locator(monetization).click();
+            await page.locator('.elementor-sub-item:visible >> nth = 0').click();
+        });
     })
     //Enterprise
     test('Should click "Enterprise"', async ({page}) => {
         await expect(page.locator(enterprise)).toBeVisible();
-        await page.locator(enterprise).click();
+        await page.locator(enterprise).dblclick();
         expect(page.url()).toContain('libsynpro-enterprise-podcasting');
     })
     //Blog
