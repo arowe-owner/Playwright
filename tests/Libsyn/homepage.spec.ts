@@ -16,6 +16,12 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('HomePage Header Buttons', () => {
     //Click the button and checks its the correct page loaded
+    
+    //Libsyn Logo
+    test('Should click Libsyn Logo', async ({page}) => {
+        await expect(page.locator('img:visible >> nth = 0')).toBeVisible();
+        await page.locator('img:visible >> nth = 0').click();
+    })
     //How To Start a Podcast
     test('Should click "How To Start a Podcast"', async ({page}) => {
         await expect(page.locator(howToStartAPodcast)).toBeVisible();
