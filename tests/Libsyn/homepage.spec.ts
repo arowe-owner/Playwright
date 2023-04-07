@@ -43,7 +43,7 @@ test.describe('HomePage Header Buttons', () => {
         expect(page.url()).toContain('libsyn-podcast-hosting-features');
     })
     //Monetization
-    test.describe('Monitization Buttons', () => {
+    test.describe('Monitization Options', () => {
         test('Should click "Monetization Button"', async ({page}) => {
             await expect(page.locator(monetization)).toBeVisible();
             await page.locator(monetization).dblclick();
@@ -54,12 +54,34 @@ test.describe('HomePage Header Buttons', () => {
             await page.locator(monetization).click();
             await page.locator('.elementor-sub-item:visible >> nth = 0').click();
         });
+        test('Should click "Monetization Dropdown 2"', async ({page}) => {
+            await expect(page.locator(monetization)).toBeVisible();
+            await page.locator(monetization).click();
+            await page.locator('.elementor-sub-item:visible >> nth = 1').click();
+        });
+        test('Should click "Monetization Dropdown 3"', async ({page}) => {
+            await expect(page.locator(monetization)).toBeVisible();
+            await page.locator(monetization).click();
+            await page.locator('.elementor-sub-item:visible >> nth = 2').click();
+        });
     })
     //Enterprise
-    test('Should click "Enterprise"', async ({page}) => {
-        await expect(page.locator(enterprise)).toBeVisible();
-        await page.locator(enterprise).dblclick();
-        expect(page.url()).toContain('libsynpro-enterprise-podcasting');
+    test.describe('Enterprise Options', () => {
+        test('Should click "Enterprise Button"', async ({page}) => {
+            await expect(page.locator(enterprise)).toBeVisible();
+            await page.locator(enterprise).dblclick();
+            expect(page.url()).toContain('libsynpro-enterprise-podcasting');
+        })
+        test('Should click "Enterprise Dropdown 1"', async ({page}) => {
+            await expect(page.locator(enterprise)).toBeVisible();
+            await page.locator(enterprise).click();
+            await page.locator('.elementor-sub-item:visible >> nth = 0').click();
+        });
+        test('Should click "Enterprise Dropdown 2"', async ({page}) => {
+            await expect(page.locator(enterprise)).toBeVisible();
+            await page.locator(enterprise).click();
+            await page.locator('.elementor-sub-item:visible >> nth = 1').click();
+        });
     })
     //Blog
     test('Should click "Blog"', async ({page}) => {
@@ -72,5 +94,13 @@ test.describe('HomePage Header Buttons', () => {
         await expect(page.locator(support)).toBeVisible();
         await page.locator(support).click();
         expect(page.url()).toContain('support');
+    })
+    //Test to switching to English
+    test('Should switch site to US', async ({page}) => {
+        await page.getByRole('link', { name: 'en', exact: true }).click();
+    })
+    //Test to switching to Espanol
+    test('Should switch site to ES', async ({page}) => {
+        await page.getByRole('link', { name: 'es', exact: true }).click();
     })
 });
