@@ -398,7 +398,7 @@ test.describe('Footer Links/Buttons', () => {
             expect(page.url()).toContain('https://libsyn.com/tos-policies/legal/');
         })
         test('Privacy Policy', async ({page}) => {
-            await page.getByRole('link', { name: 'Privacy Policy' }).click();
+            await page.getByRole('listitem').filter({ hasText: 'Privacy Policy' }).getByRole('link', { name: 'Privacy Policy' }).click();
             expect(page.url()).toContain('https://libsyn.com/tos-policies/privacy-policy/');
         })
         test('Help Center', async ({page}) => {
