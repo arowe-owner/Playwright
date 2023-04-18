@@ -17,8 +17,6 @@ test.beforeEach(async ({ page }) => {
   });
 
 test.describe('HomePage Testing Links', () => {
-    //Click the button and checks its the correct page loaded
-    
     //Libsyn Logo
     test('Click Libsyn Logo', async ({page}) => {
         await expect(page.locator('img:visible >> nth = 0')).toBeVisible();
