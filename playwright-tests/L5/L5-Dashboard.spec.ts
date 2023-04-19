@@ -11,6 +11,21 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Dashboard', () => {
     test('Check Links', async ({page}) => {
+        //All Time Downloads
+        await page.locator('#all-time-chart canvas').nth(1).click({position: {x: 55,y: 148}});
+        expect(page.url()).toContain('https://five.libsyn.com/stats');
+        await page.getByRole('link', { name: 'dashboard' }).click();
+
+        //This Month
+        await page.locator('#this-month-chart canvas').nth(1).click({position: {x: 65,y: 140}});
+        expect(page.url()).toContain('https://five.libsyn.com/stats');
+        await page.getByRole('link', { name: 'dashboard' }).click();
+
+        //This Week
+        await page.locator('#this-week-chart canvas').nth(1).click({position: {x: 87,y: 132}});
+        expect(page.url()).toContain('https://five.libsyn.com/stats');
+        await page.getByRole('link', { name: 'dashboard' }).click();
+
         //IAB / Unique Swith
         await page.getByLabel('IAB').check();
         await page.getByLabel('IAB').uncheck();
