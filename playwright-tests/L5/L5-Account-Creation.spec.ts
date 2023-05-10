@@ -38,11 +38,13 @@ test.describe('New Account Creation', () => {
         //Create Account Button
         await page.getByRole('button', { name: 'Create Your Account' }).click();
 
-        console.log('email: ' + uniqueEmail);
-        console.log('password: ' + uniquePass);
+        console.log('     email: ' + uniqueEmail);
+        console.log('     password: ' + uniquePass);
     })
     test('Choose Plan for new Podcast', async ({page}) => {
         //Login to new account
+        await page.pause();
+
         await page.getByPlaceholder('email').fill(uniqueEmail);
         await page.getByPlaceholder('password').fill(uniquePass);
         await page.getByPlaceholder('password').press('Enter');

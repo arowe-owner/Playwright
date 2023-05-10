@@ -13,17 +13,17 @@ test.describe('Dashboard', () => {
     test('Check Links', async ({page}) => {
         //All Time Downloads
         await page.locator('#all-time-chart canvas').nth(1).click({position: {x: 55,y: 148}});
-        expect(page.url()).toContain('https://five.libsyn.com/stats');
+        expect(page.url()).toContain('https://five.libsyn.com/show/stats');
         await page.getByRole('link', { name: 'dashboard' }).click();
 
         //This Month
         await page.locator('#this-month-chart canvas').nth(1).click({position: {x: 65,y: 140}});
-        expect(page.url()).toContain('https://five.libsyn.com/stats');
+        expect(page.url()).toContain('https://five.libsyn.com/show/stats');
         await page.getByRole('link', { name: 'dashboard' }).click();
 
         //This Week
         await page.locator('#this-week-chart canvas').nth(1).click({position: {x: 87,y: 132}});
-        expect(page.url()).toContain('https://five.libsyn.com/stats');
+        expect(page.url()).toContain('https://five.libsyn.com/show/stats');
         await page.getByRole('link', { name: 'dashboard' }).click();
 
         //IAB / Unique Swith
@@ -42,7 +42,7 @@ test.describe('Dashboard', () => {
 
         //Recent Episode View All Button
         await page.getByRole('button', { name: 'View All' }).click();
-        expect(page.url()).toContain('https://five.libsyn.com/episodes');
+        expect(page.url()).toContain('https://five.libsyn.com/show/episodes');
         await page.getByRole('link', { name: 'dashboard' }).click();
 
         //Quick Links
@@ -67,7 +67,7 @@ test.describe('Dashboard', () => {
 
         //Montly Storage
         await page.getByRole('button', { name: 'Manage' }).click();
-        expect(page.url()).toContain('https://five.libsyn.com/file-manager');
+        expect(page.url()).toContain('https://five.libsyn.com/show/file-manager');
         await page.getByRole('link', { name: 'dashboard' }).click();
     })
 })
