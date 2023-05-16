@@ -42,9 +42,8 @@ test.describe('New Account Creation', () => {
         console.log('     password: ' + uniquePass);
     })
     test('Choose Plan for new Podcast', async ({page}) => {
+        
         //Login to new account
-        await page.pause();
-
         await page.getByPlaceholder('email').fill(uniqueEmail);
         await page.getByPlaceholder('password').fill(uniquePass);
         await page.getByPlaceholder('password').press('Enter');
