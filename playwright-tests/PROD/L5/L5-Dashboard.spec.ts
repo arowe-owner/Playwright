@@ -2,10 +2,9 @@ import { test, expect, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
     await page.goto('https://five.libsyn.com/');
-    await page.goto('https://five-api.libsyn.com/auth/authorize?client_id=Libsyn5&state=iv1onb5y5ll&redirect_uri=https%3A%2F%2Ffive.libsyn.com%2F');
     await page.getByPlaceholder('email').fill('alex@libsyn.com');
     await page.getByPlaceholder('email').press('Tab');
-    await page.getByPlaceholder('password').fill('AlexanderLibsyn1!');
+    await page.getByPlaceholder('password').fill('AlexanderLibsyn1!!');
     await page.getByPlaceholder('password').press('Enter');
   });
 

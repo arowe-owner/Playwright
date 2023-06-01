@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { L5Variables } from '../Fixtures/L5-Fixtures';
+import { L5Variables } from '../../PROD/Fixtures/L5-Fixtures';
 
 //const vary = new L5Variables(page);
 
@@ -51,6 +51,7 @@ test.describe('New Account Creation', () => {
         console.log('     password: ' + uniquePass);
         console.log('     ******************************');
     })
+    
     test('Choose Plan for new Podcast', async ({page}) => {
         
         //Login to new account
@@ -65,12 +66,14 @@ test.describe('New Account Creation', () => {
         await page.getByPlaceholder('Enter a location').fill('1000 Seville Road');
         await page.getByText('1000 Seville RoadWadsworth, OH, USA').click();
 
+        /* Test Card Info Goes Here 
         //Enter Card Information
         await page.frameLocator('iframe[name="recurly-element--lxRHXnJsLvHZ6oPX"]').getByPlaceholder('Card number').fill('4111 1111 1111 1111');
         await page.frameLocator('iframe[name="recurly-element--lxRHXnJsLvHZ6oPX"]').getByPlaceholder('MM / YY').fill('02 / 25');
         await page.frameLocator('iframe[name="recurly-element--lxRHXnJsLvHZ6oPX"]').getByPlaceholder('CVV').fill('123');
         await page.getByRole('button', { name: 'OK' }).click();
         await page.getByRole('textbox', { name: 'Payment Method Nickname' }).fill('TEST CARD');
+        */
 
         //$5 / Month
         await page.getByRole('checkbox').first().check();
