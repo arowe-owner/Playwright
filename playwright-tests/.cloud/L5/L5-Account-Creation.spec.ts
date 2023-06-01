@@ -10,13 +10,13 @@ const uniqueEmail = 'qalibsyn+' + unique + '@gmail.com';
 const uniquePass = 'Password' + unique + '!';
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('https://ypaos:7CfDF99m&%Z4>7oWY2@five.libsyn.cloud/');
+    await page.goto('https://ypaos:7CfDF99m&%Z4>7oWY2@signup.libsyn.cloud/');
   });
 
 test.describe('New Account Creation', () => {
     test('Create New Customer Account', async ({page}) => {
-        await page.getByRole('link', { name: 'Sign Up' }).click();
-        console.log('     CLICKED SIGN UP');
+
+        //await page.pause();
 
         //First Name
         await page.getByPlaceholder('* First Name').fill(firstName);
@@ -45,35 +45,39 @@ test.describe('New Account Creation', () => {
         await page.getByRole('button', { name: 'Create Your Account' }).click();
         console.log('     CLICKED CREATE ACCOUNT');
         
+        //Prints out EMAIL and PASSWORD
         console.log('     ******************************');
         console.log('     email: ' + uniqueEmail);
         console.log('     password: ' + uniquePass);
         console.log('     ******************************');
-    })
-    
-    test('Choose Plan for new Podcast', async ({page}) => {
-        
-        //Login to new account
-        await page.getByPlaceholder('email').fill(uniqueEmail);
-        await page.getByPlaceholder('password').fill(uniquePass);
-        await page.getByPlaceholder('password').press('Enter');
+
+        //Wait 3 seconds to allow the page login to appear
+        await page.waitForTimeout(3000);
+        console.log('     WAIT 3 SECONDS');
+
+        //Directs to Choose your Plan
+        await page.goto('https://ypaos:7CfDF99m&%Z4>7oWY2@five.libsyn.cloud/');
 
         //Podcast Unique Title
         await page.getByRole('textbox', { name: 'Podcast Title' }).fill('Test Title' + unique);
+        console.log('     FILLED PODCAST TITLE');
 
         //Enter Location
         await page.getByPlaceholder('Enter a location').fill('1000 Seville Road');
-        await page.getByText('1000 Seville RoadWadsworth, OH, USA').click();
- 
+        console.log('     ENTERED LOCATION');
+
         //Enter Card Information
-        await page.frameLocator('iframe[name="recurly-element--lxRHXnJsLvHZ6oPX"]').getByPlaceholder('Card number').fill('4111 1111 1111 1111');
-        await page.frameLocator('iframe[name="recurly-element--lxRHXnJsLvHZ6oPX"]').getByPlaceholder('MM / YY').fill('02 / 25');
-        await page.frameLocator('iframe[name="recurly-element--lxRHXnJsLvHZ6oPX"]').getByPlaceholder('CVV').fill('123');
+        await page.locator('#select--creditcard').click();
+        await page.frameLocator('iframe[title="Billing information"]').getByPlaceholder('Card number').fill('4111 1111 1111 1111');
+        await page.frameLocator('iframe[title="Billing information"]').getByPlaceholder('MM / YY').fill('02 / 25');
+        await page.frameLocator('iframe[title="Billing information"]').getByPlaceholder('CVV').fill('123');
         await page.getByRole('button', { name: 'OK' }).click();
         await page.getByRole('textbox', { name: 'Payment Method Nickname' }).fill('TEST CARD');
+        console.log('     FILLED IN CARD INFO');
 
         //$5 / Month
         await page.getByRole('checkbox').first().check();
+        console.log('     SELECTED $5 MONTH');
 
         /*
         //$7 / Month
@@ -88,5 +92,6 @@ test.describe('New Account Creation', () => {
 
         //Save
         await page.getByRole('button', { name: 'Save' }).click();
+        console.log('     SAVED PODCAST');
     })
 })
