@@ -10,21 +10,26 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('Dashboard', () => {
     test('Check Links', async ({page}) => {
+
+        //await page.pause();
+
+        await page.getByRole('cell', { name: 'Alex\'s Even Cooler Cloud Test Show' }).click();
+
         //All Time Downloads
-        await page.locator('#all-time-chart canvas').nth(1).click({position: {x: 55,y: 148}});
-        expect(page.url()).toContain('https://five.libsyn.com/show/stats');
+        await page.locator('#all-time-chart canvas').nth(1).click({position: {x: 184,y: 139}});
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/stats');
         await page.getByRole('link', { name: 'dashboard' }).click();
         console.log('       CLICK "ALL TIME DOWNLOADS"')
 
         //This Month
         await page.locator('#this-month-chart canvas').nth(1).click({position: {x: 65,y: 140}});
-        expect(page.url()).toContain('https://five.libsyn.com/show/stats');
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/stats');
         await page.getByRole('link', { name: 'dashboard' }).click();
         console.log('       CLICKED "THIS MONTH"')
 
         //This Week
         await page.locator('#this-week-chart canvas').nth(1).click({position: {x: 87,y: 132}});
-        expect(page.url()).toContain('https://five.libsyn.com/show/stats');
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/stats');
         await page.getByRole('link', { name: 'dashboard' }).click();
         console.log('       CLICKED "THIS WEEK"')
 
@@ -48,7 +53,7 @@ test.describe('Dashboard', () => {
 
         //Recent Episode View All Button
         await page.getByRole('button', { name: 'View All' }).click();
-        expect(page.url()).toContain('https://five.libsyn.com/show/episodes');
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/episodes');
         console.log('       CLICKED "VIEW ALL" BUTTON')
         await page.getByRole('link', { name: 'dashboard' }).click();
         console.log('       RETURNED TO DASHBOARD')
@@ -67,18 +72,17 @@ test.describe('Dashboard', () => {
             console.log('       CLICKED "PLAYER" QUICK LINK')
             await page.locator('.modal-close > .libsyn-icon').click();
 
-        /*
+        
         //Embed Single Episode
-        await page.locator('.libsyn-select__input-container').click();
-        await page.locator('#react-select-5-input').fill('test');
-        await page.locator('#react-select-5-input').press('Enter');
+        await page.locator('#dashboard__embed-select svg').click();
+        await page.locator('#react-select-6-option-0').click();
         await page.getByRole('button', { name: 'Get Code' }).click();
-        await page.locator('.modal-close > .libsyn-icon > .libsyn-icon__main').click();
-        */
+        await page.getByRole('dialog').locator('path').first().click();
+        
 
         //Montly Storage
         await page.getByRole('button', { name: 'Manage' }).click();
-        expect(page.url()).toContain('https://five.libsyn.com/show/file-manager');
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/file-manager');
         console.log('       CLICKED "MONTHLY STORAGE" BUTTON')
         await page.getByRole('link', { name: 'dashboard' }).click();
         console.log('       RETURNED TO DASHBOARD')
