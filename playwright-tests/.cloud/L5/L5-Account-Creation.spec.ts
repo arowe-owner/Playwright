@@ -52,8 +52,8 @@ test.describe('New Account Creation', () => {
         console.log('     ******************************');
 
         //Wait 3 seconds to allow the page login to appear
-        await page.waitForTimeout(3000);
-        console.log('     WAIT 3 SECONDS');
+        await page.waitForTimeout(4000);
+        console.log('     WAIT 4 SECONDS');
 
         //Directs to Choose your Plan
         await page.goto('https://ypaos:7CfDF99m&%Z4>7oWY2@five.libsyn.cloud/');
@@ -64,6 +64,7 @@ test.describe('New Account Creation', () => {
 
         //Enter Location
         await page.getByPlaceholder('Enter a location').fill('1000 Seville Road');
+        await page.getByText('1000 Seville RoadWadsworth, OH, USA').click();
         console.log('     ENTERED LOCATION');
 
         //Enter Card Information

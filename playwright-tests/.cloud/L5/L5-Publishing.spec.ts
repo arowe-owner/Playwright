@@ -13,16 +13,19 @@ test.describe('Publishing Episode', () => {
     test('Publish Episode', async ({page}) => {
 
         await page.pause();
+
+        await page.getByRole('cell', { name: 'Alex\'s Even Cooler Cloud Test Show' }).click();
+
         //Clicks on the NEW button to upload new episode
         await page.getByRole('button', { name: 'New' }).click();
         await page.locator('#navbar_dropdown_new_upload').isVisible();
         await page.locator('#navbar_dropdown_new_upload').click();
-        expect(page.url()).toContain('https://five.libsyn.com/show/episodes/add');
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/episodes/add');
         console.log('       CLICKED NEW BUTTON')
 
         //Confirms you cannot publish without filling required fields
         await page.getByRole('button', { name: 'Publish' }).click();
-        expect(page.url()).toContain('https://five.libsyn.com/show/episodes/add');
+        expect(page.url()).toContain('https://five.libsyn.cloud/show/episodes/add');
         console.log('       CANNOT PUBLISH WITHOUT REQUIRED FIELDS')
 
         //Selects audio from Published
