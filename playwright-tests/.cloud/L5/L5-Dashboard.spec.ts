@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 test.describe('Dashboard', () => {
     test('Check Links', async ({page}) => {
 
-        //await page.pause();
+        await page.pause();
 
         await page.getByRole('cell', { name: 'Alex\'s Even Cooler Cloud Test Show' }).click();
 

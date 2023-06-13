@@ -32,7 +32,7 @@ test.describe('Publishing Episode', () => {
         await page.locator('#libsyn-notifications').getByRole('button').click();
         await page.getByRole('button', { name: 'Media Library' }).click();
         await page.getByRole('link', { name: 'Published' }).click();
-        await page.getByRole('row', { name: '241_thefeed.mp3 audio/mpeg 29.29 MB Select', exact: true }).getByRole('link', { name: 'Select' }).click();
+        await page.getByRole('row', { name: '238_thefeed.mp3 audio/mpeg 31.49 MB Select', exact: true }).getByRole('link', { name: 'Select' }).click();
         console.log('       SELECTED AUDIO FROM PUBLISHED')
 
         //Fills Title
